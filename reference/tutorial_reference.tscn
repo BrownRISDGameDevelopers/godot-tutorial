@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=4 uid="uid://chwb6m1urgxyg"]
+
+[ext_resource type="Script" uid="uid://dvuryyyghwhvp" path="res://reference/tutorial_reference.gd" id="1_k3pd8"]
+[ext_resource type="TileSet" uid="uid://bt1y3w1owxjct" path="res://resources/backgrounds.tres" id="2_txub8"]
+[ext_resource type="TileSet" uid="uid://btfvqwveiaag5" path="res://resources/tiles.tres" id="3_6pc2y"]
+[ext_resource type="PackedScene" uid="uid://dbssv3yx2xxja" path="res://reference/player_reference.tscn" id="4_f8gii"]
+[ext_resource type="PackedScene" uid="uid://ccfkv8w0nwsv3" path="res://reference/spawner_reference.tscn" id="5_y4d5n"]
+[ext_resource type="PackedScene" uid="uid://l5itolpibo07" path="res://reference/enemy_reference.tscn" id="6_w4dah"]
+[ext_resource type="Theme" uid="uid://cxdq0mdhio4fc" path="res://resources/default.tres" id="7_5mexh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph3nu"]
+size = Vector2(1152, 256)
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_k3pd8")
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEAAQABAAMAAAABAAEAAQABAAMAAAACAAEAAQABAAMAAAADAAEAAQABAAMAAAAEAAEAAQABAAMAAAAAAAAAAQABAAIAAAABAAAAAQABAAIAAAACAAAAAQABAAIAAAADAAAAAQABAAIAAAAEAAAAAQABAAIAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAA=")
+tile_set = ExtResource("2_txub8")
+metadata/_edit_lock_ = true
+
+[node name="Foreground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAARAAsAAQAEABEAAAAAAAsAAQAFAAAAAAABAAsAAQAFAAEAAAACAAsAAQAFAAEAAAADAAsAAQAFAAEAAAAEAAsAAQAFAAEAAAAFAAsAAQAFAAEAAAAGAAsAAQAFAAEAAAAHAAsAAQAFAAEAAAAIAAsAAQAFAAEAAAAJAAsAAQAFAAEAAAALAAsAAQAFAAEAAAAMAAsAAQAFAAEAAAANAAsAAQAFAAEAAAAOAAsAAQAFAAEAAAAKAAsAAQAFAAEAAAAPAAsAAQAFAAEAAAAQAAsAAQAFAAEAAAAAAAgAAQAEAAwAAAARAAgAAQAEAAsAAAABAAgAAQAEAA0AAAACAAgAAQAEAA0AAAADAAgAAQAEAA0AAAAEAAgAAQAEAA0AAAAFAAgAAQAEAA0AAAAGAAgAAQAEAA0AAAAHAAgAAQAEAA0AAAAIAAgAAQAEAA0AAAAJAAgAAQAEAA0AAAAKAAgAAQAEAA0AAAALAAgAAQAEAA0AAAAMAAgAAQAEAA0AAAANAAgAAQAEAA0AAAAOAAgAAQAEAA0AAAAPAAgAAQAEAA0AAAAQAAgAAQAEAA0AAAAAAAkAAQAEAA8AAAAAAAoAAQAEAA8AAAARAAkAAQAEAA4AAAARAAoAAQAEAA4AAAABAAkAAQAEABAAAAACAAkAAQAEABAAAAADAAkAAQAEABAAAAAEAAkAAQAEABAAAAAFAAkAAQAEABAAAAAGAAkAAQAEABAAAAAHAAkAAQAEABAAAAAIAAkAAQAEABAAAAAJAAoAAQAEABAAAAAKAAoAAQAEABAAAAALAAoAAQAEABAAAAAMAAoAAQAEABAAAAANAAoAAQAEABAAAAAOAAoAAQAEABAAAAAPAAoAAQAEABAAAAAQAAoAAQAEABAAAAAQAAkAAQAEABAAAAAPAAkAAQAEABAAAAAOAAkAAQAEABAAAAANAAkAAQAEABAAAAAMAAkAAQAEABAAAAALAAkAAQAEABAAAAAKAAkAAQAEABAAAAAJAAkAAQAEABAAAAABAAoAAQAEABAAAAACAAoAAQAEABAAAAADAAoAAQAEABAAAAAEAAoAAQAEABAAAAAFAAoAAQAEABAAAAAGAAoAAQAEABAAAAAHAAoAAQAEABAAAAAIAAoAAQAEABAAAAABAAcAAQAPAAwAAAAFAAcAAQAPAAwAAAANAAcAAQAPAAwAAAALAAcAAQAPAAwAAAAQAAcAAQAPAAwAAAADAAUAAQANAA8AAAAMAAQAAQANAA8AAAAPAAYAAQANAA8AAAAPAAcAAQANABAAAAAMAAUAAQANABAAAAAMAAYAAQANABAAAAAMAAcAAQANABAAAAADAAYAAQAHAA8AAAADAAcAAQAIAAAAAAAGAAUAAQAQAAoAAAAHAAUAAQAQAAoAAAAIAAUAAQAQAAoAAAAJAAUAAQAQAAoAAAACAAYAAQAHAA4AAAAEAAYAAQAHAA0AAAAEAAcAAQAHABAAAAACAAcAAQAHABEAAAAKAAUAAQAQAAoAAAA=")
+tile_set = ExtResource("3_6pc2y")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("4_f8gii")]
+position = Vector2(106, 47)
+
+[node name="Area2D" type="RigidBody2D" parent="."]
+position = Vector2(575, 640)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ph3nu")
+
+[node name="Spawner" parent="." instance=ExtResource("5_y4d5n")]
+position = Vector2(534, 447)
+rotation = 0.0020213972
+
+[node name="Enemy" parent="." instance=ExtResource("6_w4dah")]
+position = Vector2(701, 364)
+
+[node name="Score" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("7_5mexh")
+
+[connection signal="player_hit" from="Player" to="." method="_on_player_player_hit"]

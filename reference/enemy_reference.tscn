@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://l5itolpibo07"]
+
+[ext_resource type="Script" uid="uid://deoy3bik58ycf" path="res://reference/enemy_reference.gd" id="1_y6orh"]
+[ext_resource type="Texture2D" uid="uid://dydclpjwmf1a0" path="res://assets/image/enemy/slime_normal_walk_a.png" id="2_olijs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
+size = Vector2(56, 42)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_y6orh")
+
+[node name="SlimeNormalWalkA" type="Sprite2D" parent="."]
+position = Vector2(1, -12)
+texture = ExtResource("2_olijs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_md0e3")
