@@ -21,3 +21,7 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/viewport_height=768
+
+[gui]
+
+theme/custom="uid://cxdq0mdhio4fc"
