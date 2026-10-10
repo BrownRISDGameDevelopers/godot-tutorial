@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgo07jjfp52il"]
+[gd_scene format=3 uid="uid://dgo07jjfp52il"]
 
 [ext_resource type="Texture2D" uid="uid://bd07xjpp0716v" path="res://assets/image/enemy/door_open_top.png" id="1_ik2nu"]
 [ext_resource type="Script" uid="uid://c2w5xc6ltvyjt" path="res://scenes/spawner.gd" id="2_tx2ig"]
 
-[node name="Spawner" type="Sprite2D"]
+[node name="Spawner" type="Sprite2D" unique_id=782672076]
 texture = ExtResource("1_ik2nu")
 script = ExtResource("2_tx2ig")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1894513326]
 autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

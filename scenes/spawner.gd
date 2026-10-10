@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var enemy_scene: PackedScene
+var enemy_scene
 var enemies_spawned = 0
 
 func spawn_enemy():
